@@ -20,7 +20,6 @@ class Config:
     """
     
     _instance = None
-    _config_data: dict = {}
     
     # Registry key for Windows
     REGISTRY_KEY = r"SOFTWARE\PROGAIN\5.1"
@@ -33,12 +32,14 @@ class Config:
         if cls._instance is None:
             cls._instance = super().__new__(cls)
             cls._instance._initialized = False
+            cls._instance._config_data = {}
         return cls._instance
     
     def __init__(self):
         if self._initialized:
             return
         self._initialized = True
+        self._config_data: dict = {}
         self._load_config()
         logger.info("Config initialized")
     

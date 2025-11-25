@@ -36,7 +36,7 @@ class FirebaseClient:
         self._accounts_cache: Dict[str, List[Dict[str, Any]]] = {}
         self._categories_cache: Dict[str, List[Dict[str, Any]]] = {}
         self._subcategories_cache: Dict[str, List[Dict[str, Any]]] = {}
-        self._transactions_cache: Dict[str, List[Dict[str, Any]]] = []
+        self._transactions_cache: Dict[str, List[Dict[str, Any]]] = {}
         logger.info("FirebaseClient instance created")
     
     def initialize(self, credentials_path: Optional[str] = None) -> bool:

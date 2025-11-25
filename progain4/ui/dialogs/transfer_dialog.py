@@ -166,6 +166,12 @@ class TransferDialog(QDialog):
         else:
             self._validation_label.setText("")
     
+    def _get_account_name(self, index: int) -> str:
+        """Get the account name for a given index."""
+        if 0 <= index < len(self._accounts):
+            return self._accounts[index].get('nombre', '')
+        return ''
+    
     def _on_accept(self):
         """Validate and accept the dialog."""
         source_id = self._source_combo.currentData()
@@ -214,10 +220,8 @@ class TransferDialog(QDialog):
         fecha = datetime(qdate.year(), qdate.month(), qdate.day())
         
         # Get account names for display
-        source_idx = self._source_combo.currentIndex()
-        dest_idx = self._dest_combo.currentIndex()
-        source_nombre = self._accounts[source_idx].get('nombre', '') if source_idx >= 0 and source_idx < len(self._accounts) else ''
-        dest_nombre = self._accounts[dest_idx].get('nombre', '') if dest_idx >= 0 and dest_idx < len(self._accounts) else ''
+        source_nombre = self._get_account_name(self._source_combo.currentIndex())
+        dest_nombre = self._get_account_name(self._dest_combo.currentIndex())
         
         return {
             "fecha": fecha,

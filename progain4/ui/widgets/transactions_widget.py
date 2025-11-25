@@ -277,8 +277,6 @@ class TransactionsWidget(QWidget):
             row = self._table.rowCount()
             self._table.insertRow(row)
             
-            # Store transaction data in first cell
-            
             # Fecha
             fecha = tx.get('fecha')
             if isinstance(fecha, datetime):
